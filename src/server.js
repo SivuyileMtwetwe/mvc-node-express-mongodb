@@ -11,7 +11,7 @@ mongoose
     console.log("Connected successfully to DB!");
   })
   .catch((error) => {
-    console.log("Could not connect to DB due some error:", error),
+    console.log("Could not connect to DB due some error:", error.stack),
       process.exit();
   });
 
