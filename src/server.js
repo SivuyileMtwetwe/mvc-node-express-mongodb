@@ -5,17 +5,19 @@ const bookRoutes = require("./routes/bookRoutes");
 const app = express();
 const port = 3000;
 
-
-mongoose.connect("mongodb://localhost:27017/mydb").then(()=>{
-    console.log("Connected successfully to DB!")
-}).catch((error)=>{
+mongoose
+  .connect("mongodb://localhost:27017/mydb")
+  .then(() => {
+    console.log("Connected successfully to DB!");
+  })
+  .catch((error) => {
     console.log("Could not connect to DB due some error:", error),
-    process.exit();
-})
+      process.exit();
+  });
 
 app.use(express.json());
 app.use("/books", bookRoutes);
 
-app.listen(port , ()=> {
-    console.log(`Server is running on port ${port}`)
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
