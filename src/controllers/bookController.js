@@ -60,3 +60,18 @@ exports.updateBook = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedBook = await Book.findByIdAndUpdate(
+      id,
+      { $set: req.body },
+      { new: true }
+    );
+    if (!updatedBook) return res.status(404).json({ message: "Book not found" });
+    res.status(200).json(updatedBook);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
